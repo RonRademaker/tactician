@@ -14,9 +14,9 @@ class CanNotInvokeHandlerExceptionTest extends \PHPUnit_Framework_TestCase
 
         $exception = CanNotInvokeHandlerException::forCommand($command, 'Because stuff');
 
-        $this->assertContains(CompleteTaskCommand::class, $exception->getMessage());
+        $this->assertContains('League\Tactician\Tests\Fixtures\Command\CompleteTaskCommand', $exception->getMessage());
         $this->assertContains('Because stuff', $exception->getMessage());
         $this->assertSame($command, $exception->getCommand());
-        $this->assertInstanceOf(Exception::class, $exception);
+        $this->assertInstanceOf('League\Tactician\Exception\Exception', $exception);
     }
 }

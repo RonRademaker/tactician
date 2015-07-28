@@ -13,7 +13,7 @@ class CommandBusTest extends \PHPUnit_Framework_TestCase
     {
         $executionOrder = [];
 
-        $middleware1 = Mockery::mock(Middleware::class);
+        $middleware1 = Mockery::mock('League\Tactician\Middleware');
         $middleware1->shouldReceive('execute')->andReturnUsing(
             function ($command, $next) use (&$executionOrder) {
                 $executionOrder[] = 1;
@@ -21,7 +21,7 @@ class CommandBusTest extends \PHPUnit_Framework_TestCase
             }
         );
 
-        $middleware2 = Mockery::mock(Middleware::class);
+        $middleware2 = Mockery::mock('League\Tactician\Middleware');
         $middleware2->shouldReceive('execute')->andReturnUsing(
             function ($command, $next) use (&$executionOrder) {
                 $executionOrder[] = 2;
@@ -29,7 +29,7 @@ class CommandBusTest extends \PHPUnit_Framework_TestCase
             }
         );
 
-        $middleware3 = Mockery::mock(Middleware::class);
+        $middleware3 = Mockery::mock('League\Tactician\Middleware');
         $middleware3->shouldReceive('execute')->andReturnUsing(
             function () use (&$executionOrder) {
                 $executionOrder[] = 3;
@@ -81,7 +81,7 @@ class CommandBusTest extends \PHPUnit_Framework_TestCase
 
     public function testSingleMiddlewareWorks()
     {
-        $middleware = Mockery::mock(Middleware::class);
+        $middleware = Mockery::mock('League\Tactician\Middleware');
         $middleware->shouldReceive('execute')->once()->andReturn('foobar');
 
         $commandBus = new CommandBus([$middleware]);

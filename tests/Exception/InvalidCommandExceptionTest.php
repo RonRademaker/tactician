@@ -15,6 +15,6 @@ class InvalidCommandExceptionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertContains('type: string', $exception->getMessage());
         $this->assertSame($command, $exception->getInvalidCommand());
-        $this->assertInstanceOf(Exception::class, $exception);
+        $this->assertInstanceOf('League\Tactician\Exception\Exception', $exception);
     }
 }

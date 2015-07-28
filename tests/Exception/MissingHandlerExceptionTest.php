@@ -10,10 +10,10 @@ class MissingHandlerExceptionTest extends \PHPUnit_Framework_TestCase
 {
     public function testExceptionContainsDebuggingInfo()
     {
-        $exception = MissingHandlerException::forCommand(CompleteTaskCommand::class);
+        $exception = MissingHandlerException::forCommand('League\Tactician\Tests\Fixtures\Command\CompleteTaskCommand');
 
-        $this->assertContains(CompleteTaskCommand::class, $exception->getMessage());
-        $this->assertSame(CompleteTaskCommand::class, $exception->getCommandName());
-        $this->assertInstanceOf(Exception::class, $exception);
+        $this->assertContains('League\Tactician\Tests\Fixtures\Command\CompleteTaskCommand', $exception->getMessage());
+        $this->assertSame('League\Tactician\Tests\Fixtures\Command\CompleteTaskCommand', $exception->getCommandName());
+        $this->assertInstanceOf('League\Tactician\Exception\Exception', $exception);
     }
 }
